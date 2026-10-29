@@ -1,0 +1,15 @@
+node_modules/
+out/
+dist/
+.DS_Store
+*.log
+
+# Personal documents — never publish
+conversations_md/
+
+# Generated from build/icon.svg via `npm run icon`
+build/icon.iconset/
+build/icon.icns
+
+# Local Claude Code config and skills — not part of the project
+.claude/

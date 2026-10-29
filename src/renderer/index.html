@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' file: data: https: http:; font-src 'self' data:; connect-src 'self' ws:"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lazarus</title>
+  </head>
+  <body>
+    <div id="app">
+      <header id="titlebar">
+        <div class="titlebar-left">
+          <button id="btn-sidebar" class="icon-btn" title="Toggle Sidebar (⌘B)" aria-label="Toggle sidebar">
+            <svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M2 2.5A1.5 1.5 0 0 1 3.5 1h9A1.5 1.5 0 0 1 14 2.5v11a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5v-11zM3.5 2a.5.5 0 0 0-.5.5v11a.5.5 0 0 0 .5.5H6V2H3.5zM7 2v12h5.5a.5.5 0 0 0 .5-.5v-11a.5.5 0 0 0-.5-.5H7z"/></svg>
+          </button>
+        </div>
+        <div class="titlebar-center" id="doc-title">Untitled</div>
+        <div class="titlebar-right">
+          <div class="view-switch" role="group" aria-label="View mode">
+            <button id="btn-view-editor" class="icon-btn" title="Editor only" aria-label="Editor only">
+              <svg viewBox="0 0 16 16" width="15" height="15"><path fill="currentColor" d="M12.1 1.5a1.7 1.7 0 0 1 2.4 2.4l-8.6 8.6-3.4 1 1-3.4 8.6-8.6zm1.7.7a.7.7 0 0 0-1 0l-.7.7 1 1 .7-.7a.7.7 0 0 0 0-1zM12.4 4.6l-1-1-6.9 6.9-.4 1.4 1.4-.4 6.9-6.9z"/></svg>
+            </button>
+            <button id="btn-view-split" class="icon-btn active" title="Split view" aria-label="Split view">
+              <svg viewBox="0 0 16 16" width="15" height="15"><path fill="currentColor" d="M2 2.5A1.5 1.5 0 0 1 3.5 1h9A1.5 1.5 0 0 1 14 2.5v11a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5v-11zM7.5 2H3.5a.5.5 0 0 0-.5.5v11a.5.5 0 0 0 .5.5h4V2zm1 12h4a.5.5 0 0 0 .5-.5v-11a.5.5 0 0 0-.5-.5h-4v12z"/></svg>
+            </button>
+            <button id="btn-view-preview" class="icon-btn" title="Preview only" aria-label="Preview only">
+              <svg viewBox="0 0 16 16" width="15" height="15"><path fill="currentColor" d="M8 3C4.5 3 1.7 5.1.5 8c1.2 2.9 4 5 7.5 5s6.3-2.1 7.5-5C14.3 5.1 11.5 3 8 3zm0 8.5A3.5 3.5 0 1 1 8 4.5a3.5 3.5 0 0 1 0 7zM8 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg>
+            </button>
+          </div>
+          <button id="btn-theme" class="icon-btn" title="Toggle Dark Mode (⌘⇧D)" aria-label="Toggle dark mode">
+            <svg viewBox="0 0 16 16" width="15" height="15"><path fill="currentColor" d="M8 1a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 8 1zm0 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 1.75a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5a.75.75 0 0 1 .75-.75zM15 8a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 15 8zM3.25 8.75a.75.75 0 0 0 0-1.5h-1.5a.75.75 0 0 0 0 1.5h1.5zm9.28-5.53a.75.75 0 0 1 0 1.06l-1.06 1.06a.75.75 0 1 1-1.06-1.06l1.06-1.06a.75.75 0 0 1 1.06 0zM5.59 11.47a.75.75 0 0 0-1.06-1.06l-1.06 1.06a.75.75 0 1 0 1.06 1.06l1.06-1.06zm6.94 1.06a.75.75 0 0 1-1.06 0l-1.06-1.06a.75.75 0 1 1 1.06-1.06l1.06 1.06a.75.75 0 0 1 0 1.06zM4.53 5.59a.75.75 0 0 0 1.06-1.06L4.53 3.47a.75.75 0 0 0-1.06 1.06l1.06 1.06z"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <div id="body">
+        <aside id="sidebar" class="collapsed">
+          <div class="sidebar-tabs" role="tablist">
+            <button id="tab-files" class="sidebar-tab active" role="tab">Files</button>
+            <button id="tab-outline" class="sidebar-tab" role="tab">Outline</button>
+          </div>
+          <div id="panel-files" class="sidebar-panel active">
+            <div id="file-tree">
+              <div class="sidebar-empty">
+                <p>No folder open</p>
+                <button id="btn-open-folder" class="primary-btn">Open Folder</button>
+              </div>
+            </div>
+          </div>
+          <div id="panel-outline" class="sidebar-panel">
+            <div id="outline">
+              <div class="sidebar-empty"><p>No headings yet</p></div>
+            </div>
+          </div>
+        </aside>
+
+        <main id="content">
+          <div id="tabbar" class="single"></div>
+          <div id="panes" class="mode-split">
+            <div id="editor-pane"><div id="editor"></div></div>
+            <div id="preview-pane">
+              <article id="preview" class="markdown-body">
+                <p class="preview-placeholder">Start typing to see the preview…</p>
+              </article>
+            </div>
+          </div>
+          <footer id="statusbar">
+            <span id="status-words">0 words</span>
+            <span class="status-sep">·</span>
+            <span id="status-chars">0 characters</span>
+            <span class="status-sep">·</span>
+            <span id="status-cursor">Ln 1, Col 1</span>
+            <span class="status-spacer"></span>
+            <button id="status-focus" class="status-mode" hidden title="Focus mode on (⇧⌘F)">Focus</button>
+            <button id="status-typewriter" class="status-mode" hidden title="Typewriter scrolling on (⇧⌘Y)">Typewriter</button>
+            <span id="status-path"></span>
+          </footer>
+        </main>
+      </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

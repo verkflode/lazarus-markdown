@@ -1,0 +1,47 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2b3440"/>
+      <stop offset="1" stop-color="#1b2129"/>
+    </linearGradient>
+    <linearGradient id="mark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7cc5ff"/>
+      <stop offset="1" stop-color="#4d9fff"/>
+    </linearGradient>
+    <filter id="soft" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="10" stdDeviation="18" flood-color="#000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+
+  <!-- Rounded macOS-style tile -->
+  <rect x="112" y="112" width="800" height="800" rx="180" fill="url(#tile)"/>
+  <!-- Subtle top highlight for depth -->
+  <rect x="112" y="112" width="800" height="800" rx="180" fill="none" stroke="#ffffff" stroke-opacity="0.06" stroke-width="2"/>
+
+  <!-- Markdown mark: the 'M' and the downward chevron, our blue -->
+  <g fill="url(#mark)" filter="url(#soft)">
+    <!-- M strokes -->
+    <path d="M300 380
+             h72
+             l84 118
+             l84 -118
+             h72
+             v270
+             h-74
+             v-160
+             l-82 116
+             l-82 -116
+             v160
+             h-74
+             z"/>
+    <!-- Downward chevron (the markdown 'arrow') -->
+    <path d="M700 380
+             h74
+             v150
+             h58
+             l-95 122
+             l-95 -122
+             h58
+             z"/>
+  </g>
+</svg>

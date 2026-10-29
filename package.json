@@ -1,0 +1,114 @@
+{
+  "name": "lazarus-markdown",
+  "version": "0.4.0",
+  "description": "A fast, clean Markdown editor with live preview",
+  "author": "Verkflöde AB",
+  "main": "out/main/index.js",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "start": "electron-vite preview",
+    "build": "electron-vite build",
+    "icon": "electron build/render-icon.js && iconutil -c icns build/icon.iconset -o build/icon.icns && rm -f build/icon.iconset/_render.html",
+    "dist": "npm run build && electron-builder --mac dmg",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^45.1.0",
+    "electron-builder": "^24.13.3",
+    "electron-vite": "^4.0.0",
+    "jsdom": "^26.1.0",
+    "vite": "^7.0.5",
+    "vitest": "^3.2.4"
+  },
+  "dependencies": {
+    "@codemirror/autocomplete": "^6.18.6",
+    "@codemirror/commands": "^6.8.1",
+    "@codemirror/lang-markdown": "^6.3.3",
+    "@codemirror/language": "^6.11.1",
+    "@codemirror/language-data": "^6.5.1",
+    "@codemirror/search": "^6.5.11",
+    "@codemirror/state": "^6.5.2",
+    "@codemirror/theme-one-dark": "^6.1.3",
+    "@codemirror/view": "^6.37.2",
+    "@lezer/highlight": "^1.2.1",
+    "codemirror": "^6.0.2",
+    "dompurify": "^3.2.6",
+    "iconv-lite": "^0.6.3",
+    "jschardet": "^3.1.4",
+    "katex": "^0.19.1",
+    "markdown-it": "^14.1.0",
+    "markdown-it-anchor": "^9.2.0",
+    "markdown-it-footnote": "^4.0.0",
+    "markdown-it-github-alerts": "^1.0.1",
+    "markdown-it-multimd-table": "^4.2.3",
+    "markdown-it-task-lists": "^2.1.1",
+    "markdown-it-texmath": "^1.0.0",
+    "markdown-it-toc-done-right": "^4.2.0",
+    "mermaid": "^11.7.0",
+    "prismjs": "^1.30.0"
+  },
+  "build": {
+    "appId": "com.verkflode.lazarus-markdown",
+    "productName": "Lazarus Markdown",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "out/**/*"
+    ],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "icon": "build/icon.icns",
+      "notarize": true,
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64"
+          ]
+        }
+      ],
+      "fileAssociations": [
+        {
+          "ext": [
+            "md",
+            "markdown",
+            "mdown",
+            "mkd"
+          ],
+          "name": "Markdown Document",
+          "role": "Editor"
+        }
+      ]
+    },
+    "dmg": {
+      "title": "Lazarus Markdown",
+      "sign": false,
+      "contents": [
+        {
+          "x": 140,
+          "y": 200
+        },
+        {
+          "x": 400,
+          "y": 200,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "artifactName": "Lazarus-Markdown-${version}-${arch}.${ext}"
+  },
+  "overrides": {
+    "mermaid": {
+      "katex": "$katex"
+    }
+  },
+  "allowScripts": {
+    "esbuild@0.25.12": true,
+    "esbuild@0.28.1": true
+  }
+}
